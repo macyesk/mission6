@@ -5,6 +5,9 @@
 
 <h1>Add a New Movie to the Collection</h1>
 
+@* form to accept the title, year, director, rating, category, edit status, who it is lent to, and notes
+runs the post in the home controller to send to database
+follows data type information in MovieEntry model*@
 <form method="post">
 
     <label asp-for="title">Movie Title</label>
@@ -21,6 +24,7 @@
     <br>
     <label asp-for="rating">Rating</label>
     <br>
+    @* a dropdown selector for MPAA rating *@
     <select asp-for="rating">
         <option value="G">G</option>
         <option value="PG">PG</option>
@@ -34,6 +38,7 @@
     <br>
     <label asp-for="edited">Edited</label>
     <br>
+    @* a dropdown selector for edit status, returns with boolean values *@
     <select asp-for="edited">
         <option value="false">No</option>
         <option value="true">Yes</option>
@@ -45,6 +50,7 @@
     <br>
     <label asp-for="notes">Notes</label>
     <br>
+    @* sets the notes input to a character limit of 25*@
     <input asp-for="notes" maxlength="25">
     <br>
     <button type="submit">Add New Movie</button>

@@ -9,6 +9,7 @@ public class MovieEntryContext :DbContext
         
     }
 
+    // creates table called Movies
     public DbSet<MovieEntry> Movies { get; set; }
  
 }

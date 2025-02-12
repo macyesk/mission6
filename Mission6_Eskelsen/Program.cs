@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// sets up the database connection to the specified file in appsettings.json
 builder.Services.AddDbContext<MovieEntryContext>(options =>
     {
         options.UseSqlite(builder.Configuration["ConnectionStrings:MovieConnection"]);
