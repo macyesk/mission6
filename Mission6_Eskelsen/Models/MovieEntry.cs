@@ -11,7 +11,7 @@ public class MovieEntry
     [Required]
     public int MovieId { get; set; }
     
-    [Required]
+    [Required(ErrorMessage = "Enter a title.")]
     public string Title { get; set; }
     
     [Required]
@@ -23,11 +23,11 @@ public class MovieEntry
     public string? Rating { get; set; }
     
     [ForeignKey("CategoryId")]
-    public int CategoryId { get; set; }
-    public Category Category { get; set; }
+    public int? CategoryId { get; set; }
+    public Category? Category { get; set; }
     
     // a boolean for Edited value
-    [Required]
+    [Required(ErrorMessage = "Choose whether your movie is edited.")]
     public int Edited { get; set; }
    
     // allows for LentTo value to be null
@@ -35,7 +35,8 @@ public class MovieEntry
    
     // allows for Notes value to be null
     public string? Notes { get; set; }
-    [Required]
+    
+    [Required(ErrorMessage = "Enter whether the movie is copied to Plex.")]
     public int CopiedToPlex { get; set; }
     
 }
