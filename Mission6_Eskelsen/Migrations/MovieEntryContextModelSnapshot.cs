@@ -18,7 +18,7 @@ namespace Mission6_Eskelsen.Migrations
 
             modelBuilder.Entity("Mission6_Eskelsen.Models.MovieEntry", b =>
                 {
-                    b.Property<int>("movieId")
+                    b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -26,32 +26,32 @@ namespace Mission6_Eskelsen.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("director")
+                    b.Property<string>("Director")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("edited")
+                    b.Property<bool>("Edited")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("lentto")
+                    b.Property<string>("LentTo")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("notes")
+                    b.Property<string>("Notes")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("rating")
+                    b.Property<string>("Rating")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("title")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("year")
+                    b.Property<string>("Year")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("movieId");
+                    b.HasKey("MovieId");
 
                     b.ToTable("Movies");
                 });

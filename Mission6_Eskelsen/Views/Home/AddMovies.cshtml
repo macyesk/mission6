@@ -5,53 +5,57 @@
 
 <h1>Add a New Movie to the Collection</h1>
 
-@* form to accept the title, year, director, rating, category, edit status, who it is lent to, and notes
+@* form to accept the Title, Year, Director, Rating, category, edit status, who it is lent to, and Notes
 runs the post in the home controller to send to database
 follows data type information in MovieEntry model*@
 <form method="post">
-
-    <label asp-for="title">Movie Title</label>
+    <input asp-for="MovieId" type="hidden">
+    <label asp-for="Title">Movie Title</label>
     <br>
-    <input asp-for="title">
+    <input asp-for="Title">
     <br>
-    <label asp-for="year">Year</label>
+    <label asp-for="Year">Year</label>
     <br>
-    <input asp-for="year">
+    <input asp-for="Year">
     <br>
-    <label asp-for="director">Director</label>
+    <label asp-for="Director">Director</label>
     <br>
-    <input asp-for="director">
+    <input asp-for="Director">
     <br>
-    <label asp-for="rating">Rating</label>
+    <label asp-for="Rating">Rating</label>
     <br>
-    @* a dropdown selector for MPAA rating *@
-    <select asp-for="rating">
+    @* a dropdown selector for MPAA Rating *@
+    <select asp-for="Rating">
         <option value="G">G</option>
         <option value="PG">PG</option>
         <option value="PG-13">PG-13</option>
         <option value="R">R</option>
     </select>
     <br>
-    <label asp-for="category">Category</label>
+    <select asp-for="CategoryId">
+        <option value="">Select a Category</option>
+        @foreach (Category c in ViewBag.categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
     <br>
-    <input asp-for="category">
-    <br>
-    <label asp-for="edited">Edited</label>
+    <label asp-for="Edited">Edited</label>
     <br>
     @* a dropdown selector for edit status, returns with boolean values *@
-    <select asp-for="edited">
+    <select asp-for="Edited">
         <option value="false">No</option>
         <option value="true">Yes</option>
     </select>
     <br>
-    <label asp-for="lentto">Lent To</label>
+    <label asp-for="LentTo">Lent To</label>
     <br>
-    <input asp-for="lentto">
+    <input asp-for="LentTo">
     <br>
-    <label asp-for="notes">Notes</label>
+    <label asp-for="Notes">Notes</label>
     <br>
-    @* sets the notes input to a character limit of 25*@
-    <input asp-for="notes" maxlength="25">
+    @* sets the Notes input to a character limit of 25*@
+    <input asp-for="Notes" maxlength="25">
     <br>
     <button type="submit">Add New Movie</button>
     

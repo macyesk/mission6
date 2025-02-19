@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission6_Eskelsen.Models;
 
 namespace Mission6_Eskelsen.Controllers;
@@ -25,7 +26,8 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult AddMovies()
     {
-        return View();
+        ViewBag.categories = _context.Categories.ToList();
+        return View(new MovieEntry());
     }
 
     // posts the response in the add movies form to database
@@ -44,5 +46,30 @@ public class HomeController : Controller
     {
         return View();
     }
-   
+
+    public IActionResult MoviesList()
+    {
+        var movies = _context.Movies.Include(x => x.Category)
+            .OrderBy(x => x.Title).ToList();
+        return View(movies);
+    }
+    
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var recordToEdit = _context.Movies
+            .Single(x => x.MovieId == id);
+        
+        ViewBag.categories = _context.Categories.ToList();
+        return View("AddMovies", recordToEdit);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(MovieEntry response)
+    {
+        _context.Movies.Update(response);
+        _context.SaveChanges();
+        return RedirectToAction("MoviesList");
+    }
+    
 }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission6_Eskelsen.Models;
 
@@ -8,30 +9,34 @@ public class MovieEntry
     // sets up a primary key called movieid
     [Key]
     [Required]
-    public int movieId { get; set; }
+    public int MovieId { get; set; }
     
     [Required]
-    public string title { get; set; }
+    public string Title { get; set; }
     
     [Required]
-    public string year { get; set; }
+    public int Year { get; set; }
     
+    public string? Director { get; set; }
+    
+    public string? Rating { get; set; }
+    
+    [ForeignKey("CategoryId")]
     [Required]
-    public string director { get; set; }
-    
+    public int CategoryId { get; set; }
     [Required]
-    public string rating { get; set; }
+    public Category Category { get; set; }
     
+    // a boolean for Edited value
     [Required]
-    public string category { get; set; }
-    
-    // a boolean for edited value
-    public bool edited { get; set; }
+    public int Edited { get; set; }
    
-    // allows for lentto value to be null
-    public string? lentto { get; set; }
+    // allows for LentTo value to be null
+    public string? LentTo { get; set; }
    
-    // allows for notes value to be null
-    public string? notes { get; set; }
+    // allows for Notes value to be null
+    public string? Notes { get; set; }
+    [Required]
+    public int CopiedToPlex { get; set; }
     
 }

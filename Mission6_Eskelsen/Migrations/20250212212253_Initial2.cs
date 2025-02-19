@@ -11,7 +11,7 @@ namespace Mission6_Eskelsen.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "notes",
+                name: "Notes",
                 table: "Movies",
                 type: "TEXT",
                 nullable: true,
@@ -19,7 +19,7 @@ namespace Mission6_Eskelsen.Migrations
                 oldType: "TEXT");
 
             migrationBuilder.AlterColumn<string>(
-                name: "lentto",
+                name: "LentTo",
                 table: "Movies",
                 type: "TEXT",
                 nullable: true,
@@ -31,7 +31,7 @@ namespace Mission6_Eskelsen.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "notes",
+                name: "Notes",
                 table: "Movies",
                 type: "TEXT",
                 nullable: false,
@@ -41,7 +41,7 @@ namespace Mission6_Eskelsen.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "lentto",
+                name: "LentTo",
                 table: "Movies",
                 type: "TEXT",
                 nullable: false,
