@@ -35,10 +35,21 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult AddMovies(MovieEntry response)
     {
-        // adds to db and saves changes
-        _context.Movies.Add(response);
-        _context.SaveChanges();
-        return View("EntryConfirmation", response);
+        if (ModelState.IsValid)
+        {
+            // adds to db and saves changes
+            _context.Movies.Add(response);
+            _context.SaveChanges();
+            return View("EntryConfirmation", response);
+        }
+        else
+        {
+            ViewBag.categories = _context.Categories.ToList();
+            return View(response);
+        }
+        
+        
+        
     }
 
     // opens the about view
@@ -68,6 +79,22 @@ public class HomeController : Controller
     public IActionResult Edit(MovieEntry response)
     {
         _context.Movies.Update(response);
+        _context.SaveChanges();
+        return RedirectToAction("MoviesList");
+    }
+
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        var recordToDelete = _context.Movies
+            .Single(x => x.MovieId == id);
+        return View(recordToDelete);
+    }
+
+    [HttpPost]
+    public IActionResult Delete(MovieEntry recordToDelete)
+    {
+        _context.Movies.Remove(recordToDelete);
         _context.SaveChanges();
         return RedirectToAction("MoviesList");
     }

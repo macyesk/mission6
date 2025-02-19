@@ -15,6 +15,7 @@ public class MovieEntry
     public string Title { get; set; }
     
     [Required]
+    [Range(1888, int.MaxValue, ErrorMessage = "Enter a year after 1888, the year the first movie came out.")]
     public int Year { get; set; }
     
     public string? Director { get; set; }
@@ -22,9 +23,7 @@ public class MovieEntry
     public string? Rating { get; set; }
     
     [ForeignKey("CategoryId")]
-    [Required]
     public int CategoryId { get; set; }
-    [Required]
     public Category Category { get; set; }
     
     // a boolean for Edited value
