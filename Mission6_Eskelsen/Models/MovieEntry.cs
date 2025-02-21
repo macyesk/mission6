@@ -14,6 +14,7 @@ public class MovieEntry
     [Required(ErrorMessage = "Enter a title.")]
     public string Title { get; set; }
     
+    // limits movie year to after 1888
     [Required]
     [Range(1888, int.MaxValue, ErrorMessage = "Enter a year after 1888, the year the first movie came out.")]
     public int Year { get; set; }
@@ -22,6 +23,7 @@ public class MovieEntry
     
     public string? Rating { get; set; }
     
+    // foreign key connection to category table
     [ForeignKey("CategoryId")]
     public int? CategoryId { get; set; }
     public Category? Category { get; set; }

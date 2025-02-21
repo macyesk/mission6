@@ -35,6 +35,7 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult AddMovies(MovieEntry response)
     {
+        // checks to see if all data is valid from model
         if (ModelState.IsValid)
         {
             // adds to db and saves changes
@@ -44,6 +45,7 @@ public class HomeController : Controller
         }
         else
         {
+            // returns to add page
             ViewBag.categories = _context.Categories.ToList();
             return View(response);
         }
@@ -58,6 +60,7 @@ public class HomeController : Controller
         return View();
     }
 
+    // opens the list of movies with all the information in database
     public IActionResult MoviesList()
     {
         var movies = _context.Movies.Include(x => x.Category)
@@ -65,6 +68,7 @@ public class HomeController : Controller
         return View(movies);
     }
     
+    // opens add movie view filled with information from selected entry
     [HttpGet]
     public IActionResult Edit(int id)
     {
@@ -75,6 +79,7 @@ public class HomeController : Controller
         return View("AddMovies", recordToEdit);
     }
 
+    // updates entry from edit page
     [HttpPost]
     public IActionResult Edit(MovieEntry response)
     {
@@ -83,6 +88,7 @@ public class HomeController : Controller
         return RedirectToAction("MoviesList");
     }
 
+    // opens view to confirm deletion
     [HttpGet]
     public IActionResult Delete(int id)
     {
@@ -91,6 +97,7 @@ public class HomeController : Controller
         return View(recordToDelete);
     }
 
+    // deletes specified movie
     [HttpPost]
     public IActionResult Delete(MovieEntry recordToDelete)
     {
